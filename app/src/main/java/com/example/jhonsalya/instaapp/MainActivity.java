@@ -77,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext(),model.getImage());
-                viewHolder.setUserName(model.getUsername());
+                viewHolder.setUsername(model.getUsername());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent singleInstaActivity = new Intent(MainActivity.this, SingleInstaActivity.class);
-                        singleInstaActivity.putExtra("Postid", post_key);
+                        singleInstaActivity.putExtra("PostId", post_key);
                         startActivity(singleInstaActivity);
                     }
                 });
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             Picasso.with(ctx).load(image).into(post_image);
         }
 
-        public void setUserName(String userName){
+        public void setUsername(String userName){
             TextView postUserName = (TextView) mView.findViewById(R.id.textUsername);
             postUserName.setText(userName);
         }
@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(id == R.id.logout){
             mAuth.signOut();
+        }
+        else if(id == R.id.login){
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
